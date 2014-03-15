@@ -1,15 +1,17 @@
 
-$('#volumeDropdown').toggle('blind',1);
+//$('#volumeDropdown').toggle('blind',1);
 
 $(window).ready(function(){
 	setSizeOfColumns();
+	alert
+	var height = $('.btn-group').width()+$("#progressBar").width()+30;
+	$("#artistPicture").css("height",height + "px"	);
+	$("#artistPicture").css("width",height + "px");
 });
 
 $(window).resize(function(){
 	setSizeOfColumns();
 });
-
-
 
 
 function setSizeOfColumns() {
@@ -22,7 +24,7 @@ function setSizeOfColumns() {
 	} else {
 		$(".column").css('height',"300px");
 		$(".container").css('height',"1000px");
-				$(".playlistDropdown").css("max-height",( $(".column").height() - 80 )+ "px");
+		$(".playlistDropdown").css("max-height",( $(".column").height() - 80 )+ "px");
 	}
 }
 
@@ -30,6 +32,6 @@ $(".playlistHeader").click(function (){
 	$('.playlistDropdown').toggle('blind',100);
 });
 
-$("#volume").click(function(){
+/*$("#volume").click(function(){
 	$('#volumeDropdown').toggle('blind',100);
-});
+});*/

@@ -120,14 +120,36 @@ body {
 
 .playlistItem {
 	padding: 2px;
-
 }
 
-.playlistPicture {
-	width: 20px;
-	height: 20px;
+#artistPicture {
+	margin-top: -20px;
+	margin-left: 0;
+	margin-right: 0;
 }
 
-.musicPlayer {
-	height: auto;
+#progressBar {
+	width: 150px;
+	height: 34px;
+}
+
+#progressBarHorizontal {
+	height: 5px;
+	width: 100%;
+	background-color: rgb(70,70,70);
+	margin-top: 7px;
+	padding: 0;
+}
+
+#progressBarVertical {
+	position: relative;
+	height: 100%;
+	width: 5px;
+	background-color: black;
+	margin-top: -12px;
+}
+
+div.list-group-item:hover {
+	text-decoration: none;
+	background-color: #666;
 }
