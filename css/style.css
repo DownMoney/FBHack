@@ -78,10 +78,9 @@ body {
 }
 
 .container {
-	height: 80%;
+	height: 70%;
 	margin-top: 70px;
 	vertical-align: center;
-
 }
 
 .wide {
@@ -112,7 +111,26 @@ body {
 	padding: 8px;
 }
 
+.playlistHeader {
+	font-weight: bold;
+}
+
+.playlistDropdown {
+	overflow: auto; 
+}
+
+.playlistItem {
+	padding: 2px;
+
+}
+
+.playlistPicture {
+	width: 20px;
+	height: 20px;
+}
+
 .musicPlayer {
+
 	height: auto;
 
 }
