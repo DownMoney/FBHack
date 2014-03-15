@@ -52,7 +52,8 @@
             } 
             function eventTemplate(event)
             {
-                return "<div class='playlistItem'><span class='eventTitle'>"+event['name']+"</span><button onclick=\"choose("+event['id']+");\">Get playlist!</button></div>";
+                //style='background: rgba(255,255,255,0.8); width: 80%; margin: auto; border-radius:10px; padding: 10px; margin-top: 10px;'
+                return "<a href='getPlayList/"+event['id']+"' class='list-group-item'><span class='eventTitle'>"+event['name']+"</span></a>";
             }
             function getProfile()
             {
@@ -64,12 +65,6 @@
                     getEvents(authtoken);//,function(events) {console.log(events);});
                 });
             }
-            function choose(eventid)
-            {
-                //$.cookie('event', eventid);
-                console.log(eventid);
-                window.location = "getPlayList.html?event="+eventid;
-            }
         </script>
     </head>
     <body onload="getProfile();">
@@ -79,10 +74,10 @@
                     <div>
                         <div id="my_profilepic" style="display:inline;"></div>
                         <p id="my_name" style="display:inline;"></p>
-                        <div class="playlistHeader">Choose your event:</div>
                 </div>
             </div>
-            <div id="my_events">
+            <div id="my_events" class="list-group" style="margin-top: 40px;">
+                <a class="list-group-item active" href="#">Choose your event you want to create a playlist for:</a>
             </div>
         </div>
     </body>
