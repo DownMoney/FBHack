@@ -10,7 +10,13 @@
 	    
 }
 
-body{
+html {
+	width:100%;
+	height: 100%;
+}
+
+body {
+	width: 100%;
 	background: url('../img/party.jpg');
 }
 
@@ -54,4 +60,9 @@ body{
 	margin-top: -10px;
 	
 	color: #fff;
+}
+
+.jumbotron {
+	margin-top: 100px;
+	background: rgba(196,196,196,0.5);
 }
