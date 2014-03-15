@@ -52,7 +52,7 @@
             } 
             function eventTemplate(event)
             {
-                return "<div class='oneEvent'><span class='eventTitle'>"+event['name']+"</span><button onclick=\"choose("+event['id']+");\">(przejdz dalej)</button></div>";
+                return "<div class='playlistItem'><span class='eventTitle'>"+event['name']+"</span><button onclick=\"choose("+event['id']+");\">Get playlist!</button></div>";
             }
             function getProfile()
             {
@@ -60,26 +60,26 @@
                 $.get("https://graph.facebook.com/me?access_token="+authtoken, function( data ) {
                     console.log(data);
                     $('#my_name').html(data['name']);
-                    $('#my_profilepic').html("<img src='https://graph.facebook.com/"+data['id']+"/picture?type=large'>");
+                    $('#my_profilepic').html("<img src='https://graph.facebook.com/"+data['id']+"/picture'>");
                     getEvents(authtoken);//,function(events) {console.log(events);});
                 });
             }
             function choose(eventid)
             {
-                $.cookie('event', eventid);
+                //$.cookie('event', eventid);
                 console.log(eventid);
-                 window.location = "getPlayList.html";
+                window.location = "getPlayList.html?event="+eventid;
             }
         </script>
     </head>
     <body onload="getProfile();">
-        <div class="container">
+        <div class="container" style="height: auto;">
             <div class="jumbotron">
-                <div class="row">
-                    <div class="col-md-12 col-lg-4">
-                        <div id="my_profilepic"></div>
-                        <p id="my_name"></p>
-                        <p>Choose your event:</p>
+                <div class="row" class="playlistDropdown">
+                    <div>
+                        <div id="my_profilepic" style="display:inline;"></div>
+                        <p id="my_name" style="display:inline;"></p>
+                        <div class="playlistHeader">Choose your event:</div>
                 </div>
             </div>
             <div id="my_events">
