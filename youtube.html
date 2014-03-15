@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YT</title>
+  <link rel="stylesheet" href="/css/jquery-photowall.css">
+</head>
+<body>
+<div id="search">
+  <input onkeyup="if(event.keyCode == 13) search($(this).val());" />
+</div>
+
+<div id="player"></div>
+
+
+<div id="gallery"> 
+  <div class="body"> 
+  </div> 
+</div> 
+
+</body>
+
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+ <script src="https://www.youtube.com/player_api"></script>
+  <script src="/js/jquery-photowall.js"></script>
+<script>
+
+
+
+
+ var player;
+
+
+$(document).ready(function(){
+    PhotoWall.init({
+        el:                 '#gallery'               // Gallery element
+                        // Use zoom
+        ,zoomAction:        'mouseenter'             // Zoom on action
+        ,zoomTimeout:       500                      // Timeout before zoom
+        ,zoomDuration:      100                      // Zoom duration time
+        ,zoomImageBorder:   5                         // Zoomed image border size 
+        ,showBox:           false                    // Enavle fullscreen mode
+        ,showBoxSocial:     false                     // Show social buttons
+        ,padding:           0                        // padding between images in gallery
+        ,lineMaxHeight:     150                      // Max set height of pictures line
+        ,lineMaxHeightDynamic: true                  // Dynamic lineMaxHeight. If set to True,
+                                                     // then line height will be changing on 
+                                                     // resize, coressponding to 
+                                                     // baseScreenHeight param
+        ,baseScreenHeight:  600                      // Base screen size from wich calculating dynamic lineMaxHeight  
+    });
+});
+
+
+
+
+ var ids = [];
+ var playID = 0; 
+function search(q){
+  url = 'https://www.googleapis.com/youtube/v3/search?videoSyndicated=true&videoEmbeddable=true&part=snippet&order=viewCount&q='+encodeURIComponent(q)+'&type=video&safeSearch=none&key=AIzaSyCsHxnjIW3dFbEh7eJQrLF--Qv1mqy4n58'
+
+  $.getJSON(url, function(data){
+    console.log(data);
+    var pics = {};
+    $.each(data['items'], function(key, val){
+      ids.push(val['id']['videoId']);
+      pics[val['id']['videoId']] = {id:val['id']['videoId'], img:val['snippet']['thumbnails']['high']['url'], width: 200, height:200, th:{id:val['id']['videoId'], src:val['snippet']['thumbnails']['high']['url'], width: 200, height:200,zoom_src:val['snippet']['thumbnails']['high']['url'],zoom_factor:1.5}};
+    });
+
+    PhotoWall.load(pics);
+    console.log(data['items'][0]['snippet']['title']);
+    embed = '<iframe id="ytplayer" width="560" height="315" src="//www.youtube.com/embed/'+data['items'][2]['id']['videoId']+'?autoplay=1&enablejsapi=1&version=3&playerapiid=ytplayer" frameborder="0" allowfullscreen></iframe>';
+    $('#player').html(embed);
+    //embed = '<object width="560" height="315"><param name="movie" value="//www.youtube.com/v/'+data['items'][2]['id']['videoId']+'?autoplay=1&enablejsapi=1&version=3&playerapiid=player1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="//www.youtube.com/v/'+data['items'][2]['id']['videoId']+'?autoplay=1&enablejsapi=1&version=3&playerapiid=player1" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>';
+
+   
+      
+        player = new YT.Player('ytplayer', {
+          height: '390',
+          width: '640',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange,
+            'onError': onPlayerError
+          }
+        });
+     
+
+
+   
+  });
+}
+
+ function onPlayerReady(event) {  
+    event.target.playVideo();
+}
+
+function onPlayerStateChange(event) {
+  console.log(event.target.getVideoData());
+
+}
+
+
+function onPlayerError(event)
+{
+  playID++;
+  event.target.clearVideo();
+  event.target.loadVideoById(ids[playID]);
+}
+
+
+</script>
+</html>
