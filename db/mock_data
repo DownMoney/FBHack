@@ -1,0 +1,5 @@
+INSERT INTO user (id, login, password, facebook_id, current_song)
+VALUES (1, 'Jarek', md5('password'), 100007999414259, NULL),
+       (2, 'Michael', md5('password'), 10152677827749408, NULL),
+       (3, 'Bartek', md5('password'), 644629628902216, NULL),
+       (4, 'Konrad', md5('password'), 552564048099351, NULL);
