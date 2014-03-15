@@ -1,0 +1,57 @@
+@font-face {
+	font-family: 'BrushScript';
+	src: url('../fonts/Brush Script Regular.ttf')  format('truetype');
+	    
+}
+
+@font-face {
+	font-family: 'HelveticaNeue';
+	src: url('../fonts/HelveticaNeueLTPro-Th.otf');
+	    
+}
+
+body{
+	background: url('../img/party.jpg');
+}
+
+.login{
+	width: 350px;
+	height: 400px;
+	background: rgba(0,0,0,0.7);
+	display: block;
+	margin: 0 auto;
+	margin-top:200px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	-moz-box-shadow: 2px 2px 20px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 2px 2px 20px rgba(0,0,0,0.6);
+	box-shadow: 2px 2px 20px rgba(0,0,0,0.6);
+	text-align: center;
+}
+
+.login h1{
+	font-family: 'BrushScript';
+	text-align: center;
+	color: #359dd6;	
+	font-size: 45px;
+}
+
+.login h1 span{
+	color: #1abc9c;
+
+}
+
+.login p{
+	font-family: 'HelveticaNeue';
+	font-weight: 100;
+	font-size: 22px;
+	padding: 10px;
+	color: #fff;
+}
+
+.fb-login-button{
+	margin-left: 0px;
+	margin-top: -10px;
+	
+	color: #fff;
+}
