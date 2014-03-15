@@ -1,4 +1,5 @@
-var playlistDroppedDown = true;
+
+$('#volumeDropdown').toggle('blind',1);
 
 $(window).ready(function(){
 	setSizeOfColumns();
@@ -27,4 +28,8 @@ function setSizeOfColumns() {
 
 $(".playlistHeader").click(function (){
 	$('.playlistDropdown').toggle('blind',100);
+});
+
+$("#volume").click(function(){
+	$('#volumeDropdown').toggle('blind',100);
 });
