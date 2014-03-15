@@ -85,3 +85,19 @@ body {
 .colorWhite {
 	background-color: white;
 }
+
+
+.column {
+	height: 100%;
+	padding: 2px;
+}
+.incolumn {
+	background-color: rgba(70,70,70,0.8);
+	border-radius: 10px;
+	height: 100%;
+	padding: 8px;
+}
+
+.musicPlayer {
+	height: auto;
+}
