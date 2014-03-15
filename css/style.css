@@ -62,25 +62,26 @@ body {
 	color: #fff;
 }
 
-<<<<<<< HEAD
 #ytplayer, #player{
 	display: none !important;
-=======
+}
+
 .jumbotron {
 	height: 100%;
 	background: rgba(196,196,196,0.5);
-<<<<<<< HEAD
->>>>>>> d87d3f7c8720272d9a4eaf67697befb219b1e903
-=======
 }
 
 .container {
 	height: 80%;
 	margin-top: 70px;
 	vertical-align: center;
+
 }
 
 .wide {
 	width: 100%;
->>>>>>> 0f389ce119ba11cb9f6a796f7d97154d4b523bb2
+}
+
+.colorWhite {
+	background-color: white;
 }
