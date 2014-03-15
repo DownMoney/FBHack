@@ -153,3 +153,16 @@ div.list-group-item:hover {
 	text-decoration: none;
 	background-color: #666;
 }
+
+.musicPlayer {
+	height: auto;
+}
+
+.buyAmazon {
+	color: white;
+	padding: 10px;
+}
+
+.buyAmazon img {
+	width: 50px;
+}
