@@ -85,8 +85,6 @@ body {
 
 .wide {
 	width: 100%;
-
-
 }
 
 .pw-zoom{
@@ -95,7 +93,9 @@ body {
 
 }
 
-
+.colorWhite {
+	background: rgba(255,255,255,0.8);
+}
 .column {
 	height: 100%;
 	padding: 4px;
@@ -129,7 +129,5 @@ body {
 }
 
 .musicPlayer {
-
 	height: auto;
-
 }
