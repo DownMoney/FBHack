@@ -47,8 +47,8 @@ $(document).ready(function() {
   $('#play').click(function() {apiswf.rdio_play();});
   $('#stop').click(function() { apiswf.rdio_stop(); });
   $('#pause').click(function() { apiswf.rdio_pause(); });
-  $('#previous').click(function() { apiswf.rdio_previous(); });
-  $('#next').click(function() { apiswf.rdio_next(); });
+  $('#previous').click(function() { prev(); });
+  $('#next').click(function() { next(); });
 });
 
 function playPlaylist(playlist){
@@ -62,6 +62,23 @@ function play(id){
    apiswf.rdio_play(id);
 }
 
+function next(){
+ started = false;
+  playing++;
+  if(playing<_Playlist.length)
+      play(_Playlist[playing]);
+    else
+      started = false;
+}
+
+function prev(){  
+  started = false;
+  playing--;
+  if(playing>0)
+    play(_Playlist[playing]);
+  else
+    started = false;
+}
 
 // the global callback object
 var callback_object = {};
@@ -101,16 +118,11 @@ callback_object.playStateChanged = function playStateChanged(playState) {
   // The playback state has changed.
   // The state can be: 0 - paused, 1 - playing, 2 - stopped, 3 - buffering or 4 - paused.
   if (playState == 1)
-    start= true;
+    started = true;
 
   if(started && playState == 2)
   {
-    console.log("NEXT");
-    playing++;
-    if(playing<_Playlist.length)
-      play(_Playlist[playing]);
-    else
-      started = false;
+    next();
   }
   console.log(playState);
 }
