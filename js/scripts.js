@@ -2,7 +2,7 @@ var Music = {};
 
 function getAuthToken(){
 	//replace with generated one!!!!
-	return "CAACEdEose0cBAJxmgZAhmcMp9w8zbWuIL90tTAwOwNBLnaTZANEdI4cgkJVBGY36MZBz6V7DSOA62yiPyNquAPpxW09J753bKnikAYQW9GlrHzpt4lDRupeflZBm75kMyVMZChy6saTQSMLN3B5v4XwfxZA9cXu0ILuWUGUDF7gD25SMloXGATf4aJCaQOOPsZD";  
+	return "CAACEdEose0cBAIh9I9OzvMcdiP0xeTHcfZAN2o7UT8q2JIv0uowegGxPwgk9k0JVTsxZCY3ZAy9nbvb0dFoPwZCBXgR1PtAnKO4NfQxCEJapMU4ZA5tZAkgrwa9Q2XWHXf3s43lC7J1G9wz0xEd21XlgKHhuT6KWjnf7IHxZB1ZBcX6S5ZBad1u0GSZBszZCRO41P0ZD";  
 }
 
 function getEvents(){
@@ -70,6 +70,7 @@ function createPlaylist(eid){
 
 function rank(eid)
 {
+	MAX = 30;
 	console.log("RANK!");
 	var rank = unify(Music[eid]);
 	var keys = Object.keys(rank);
@@ -93,14 +94,14 @@ function rank(eid)
 	
 	var items = [];
 	
-	for(var i = 0; i < newrank.length; i++)
+	for(var i = 0; i < newrank.length && i<MAX; i++)
 	{
 		//get yt ids!!
-		//searchArtist(newrank[i][0], newrank[i][1]);
-		items.push("<b>"+newrank[i][0]+"</b> ("+newrank[i][1] + ")<br>");
+		searchRdio(newrank[i][0], 2);
+		//items.push("<b>"+newrank[i][0]+"</b> ("+newrank[i][1] + ")<br>");
 	}
 	
-	$('#'+eid+'likes').html(items.join(''));
+	//$('#'+eid+'likes').html(items.join(''));
 }
 
 function unify(music){
@@ -207,3 +208,34 @@ function getTracks(href, n, a){
 		};
 	});
 }
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////// RDIO RDIO RDIO RDIO ////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var Playlist = [];
+
+function searchRdio(q, n){
+	
+   $.getJSON("http://localhost:3000/search/"+q, function(data){
+   	pics = {};
+     if(data['status'] == "ok")
+     {
+     	for (var i = 0; i<data['result']['results'].length && i<n; i++) {
+     		key = data['result']['results'][i]['key'];
+     		pic = data['result']['results'][i]['icon400'];
+     		/*name = data['result']['results'][i]['name'];
+     		artist = data['result']['results'][i]['albumArtist'];
+     		album = data['result']['results'][i]['album'];
+     		temp = {key: key, pic:pic, name:name, artist:artist, album:album};*/
+     		Playlist.push(key);
+
+     		pics[key] = {id:key, img:pic, width: 200, height:200, th:{id:key, src:pic, width: 200, height:200,zoom_src:pic,zoom_factor:1.5}};
+     		console.log(pics);
+     		PhotoWall.load(pics);
+     	};
+     }
+     else
+     	console.log(data);
+  });
+}
+
