@@ -131,3 +131,12 @@ body {
 .musicPlayer {
 	height: auto;
 }
+
+.buyAmazon {
+	color: white;
+	padding: 10px;
+}
+
+.buyAmazon img {
+	width: 50px;
+}
