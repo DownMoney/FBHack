@@ -22,28 +22,27 @@
 
 </head>
 <body>
-
     <div id="fb-root"></div>
     <script>
         var domain = "http://stojanowski.eu/pajacyk/";
-      window.fbAsyncInit = function() {
-      FB.init({
-        appId      : 1455001548065557,
-        status     : true, // check login status
-        cookie     : true, // enable cookies to allow the server to access the session
-        xfbml      : true  // parse XFBML
-      });
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : 1455001548065557,
+                status     : true, // check login status
+                cookie     : true, // enable cookies to allow the server to access the session
+                xfbml      : true  // parse XFBML
+            });
 
-      FB.Event.subscribe('auth.authResponseChange', function(response) {
-        if (response.status === 'connected') {
-          reloadToBartosh(response.authResponse.accessToken);
-          console.log(response.authResponse.accessToken);
-        } else if (response.status === 'not_authorized') {
-          FB.login();
-        } else {
-          FB.login();
-        }
-      });
+          FB.Event.subscribe('auth.authResponseChange', function(response) {
+            if (response.status === 'connected') {
+              reloadToBartosh(response.authResponse.accessToken);
+              console.log(response.authResponse.accessToken);
+            } else if (response.status === 'not_authorized') {
+              FB.login();
+            } else {
+              FB.login();
+            }
+          });
       };
 
       (function(d){
@@ -60,62 +59,6 @@
         window.location = "login.html";
         //$.redirect('http://stojanowski.eu/pajacyk/login.html', {'a':1});
       }
-</script>
-
-<!--
-  Below we include the Login Button social plugin. This button uses the JavaScript SDK to
-  present a graphical Login button that triggers the FB.login() function when clicked. -->
-
-<fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-    <script>
-        /*window.fbAsyncInit = function() {
-            FB.init({
-                appId      : 1455001548065557,
-                status     : true,
-                xfbml      : true
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-        function testAPI() {
-            console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me', function(response) {
-                console.log('Good to see you, ' + response.name + '.');
-            });
-        };
-
-        
-        function login() {
-            FB.login(function(response) {
-                if(response.status === 'connected'){
-                    testAPI();
-                } else if (response.status === 'not_authorized') {
-                    FB.login(function(response){
-                        if (response.authResponse) {
-                            window.location.href = "stojanowski.eu/pajacyk/login.html";
-                        } else {
-                            $('#badresponse').html("<p>Bye bye!</p>");
-                        }
-                    },{scope:'user_events,user_likes,user_friends,friends_likes'});
-                } else {
-                    FB.login(function(response){
-                        if (response.authResponse) {
-                            window.location.href = "stojanowski.eu/pajacyk/login.html";
-                        } else {
-                            $('#badresponse').html("<p>Bye bye!</p>");   
-                        }
-                    });
-                }    
-           });
-        }*/
-       // setTimeout(function() {login();}, 1000);
     </script>
 
     <div class="login">
@@ -125,8 +68,7 @@
       </p>
 
       <div id="badresponse" style="color:red"></div>
-      <fb:login-button show-faces="false" width="200" max-rows="1"></fb:login-button>
-      <!--<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="login();"></div>-->
+      <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="login();"></div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
