@@ -64,11 +64,17 @@ body {
 
 #ytplayer, #player{
 	display: none !important;
+
+	height: 100%;
+	background: rgba(196,196,196,0.5);
+
+
 }
 
 .jumbotron {
 	height: 100%;
 	background: rgba(196,196,196,0.5);
+
 }
 
 .container {
@@ -79,6 +85,14 @@ body {
 
 .wide {
 	width: 100%;
+
+
+}
+
+.pw-zoom{
+	width: 100px !important;
+	height: 100px !important;
+
 }
 
 .colorWhite {
@@ -116,5 +130,7 @@ body {
 }
 
 .musicPlayer {
+
+	height: auto;
 
 }

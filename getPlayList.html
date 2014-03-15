@@ -7,20 +7,47 @@
 <body>
 <div id="events">
 </div>
-<div id="player"></div>
-<div id="rdio"></div>
+
  <div id="apiswf"></div>
-<button id="play">Play</button>
+
+
+
+<div id="gallery"> 
+  <div class="body"> 
+  </div> 
+</div> 
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
 
-
+<script src="/js/jquery-photowall.js"></script>
 <script src="/js/rdio-connect.js"></script>
 <script src="/js/scripts.js"></script>
 
 <script>
+
+$(document).ready(function(){
+    PhotoWall.init({
+        el:                 '#gallery'               // Gallery element
+                        // Use zoom
+        ,zoomAction:        'mouseenter'             // Zoom on action
+        ,zoomTimeout:       500                      // Timeout before zoom
+        ,zoomDuration:      100                      // Zoom duration time
+        ,zoomImageBorder:   5                         // Zoomed image border size 
+        ,showBox:           false                    // Enavle fullscreen mode
+        ,showBoxSocial:     false                     // Show social buttons
+        ,padding:           0                        // padding between images in gallery
+        ,lineMaxHeight:     150                      // Max set height of pictures line
+        ,lineMaxHeightDynamic: true                  // Dynamic lineMaxHeight. If set to True,
+                                                     // then line height will be changing on 
+                                                     // resize, coressponding to 
+                                                     // baseScreenHeight param
+        ,baseScreenHeight:  600                      // Base screen size from wich calculating dynamic lineMaxHeight  
+    });
+});
+
 </script>
 </html>

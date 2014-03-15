@@ -186,7 +186,7 @@ var PhotoWall = {
 	        }
 	    }
         PhotoWall._photos = data;
-		PhotoWall.show();
+		PhotoWall.show(data);
 	},
 	/* This method render images by lines to the container.
 	   If 'data' is set then images from 'data' will be appended to the container,
@@ -205,7 +205,8 @@ var PhotoWall = {
 		} else {
 		    // when we need to update list of images. 
 	        imgArray   = data;
-            line       = PhotoWall._last_line[0];
+	        line = [];
+        console.log(line);
 		    totalWidth = PhotoWall._last_line[1];
 		}
         
@@ -218,10 +219,10 @@ var PhotoWall = {
             } 
             var t = $('<div id="'+id+'" class="pw-photo '+crop+' clearfix" style="'
                 +'margin:'+padding+'px;'
-                +'width:'+w+'px;height:'+h+'px;float:left;'
+                +'width:100px;height:100px;float:left;'
                 +'"><a class="pw-link" href="'+big
                 +'"><img class="pw-zoom" src="'+th+'" '
-                +'width="'+w+'" height="'+h+'" style="'+img_pos+'" /></a></div>'
+                +'width="100" height="100" style="'+img_pos+'" /></a></div>'
 	        );
 			if($.browser.msie) {
 				t.find('img').hide().load(function(){$(this).fadeIn(300);});
@@ -290,7 +291,8 @@ var PhotoWall = {
                 first_space = true;
                 space       = PhotoWall._c_width*PhotoWall.options.firstBigWidthPercent;  
             }
-			
+			console.log(i);
+			console.log(imgArray);
 			line.push(imgArray[i]);
 			totalWidth += imgArray[i].th.width;
 

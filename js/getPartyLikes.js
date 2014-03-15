@@ -2,24 +2,6 @@
 			//you start with getEvents
 
 			var partylikes = [];
-			function getEvents(authtoken)
-			{
-				$.get("https://graph.facebook.com/me/events/attending?access_token="+authtoken, function( data ) {
-					var events = [];
-					console.log(data['data'].length+"==len");
-					for(var i = 0; i < data['data'].length; i++)
-					{
-						getEvent(data['data'][i]['id'],data['data'][i], function(data,info){
-							events.push({'id': data['id'], 'name': data['name'], 'owner_id':info['owner']['id'], 'owner_name':info['owner']['name']});
-						});
-						//getAttendees(data['data'][i]['id']);
-						//var now = $('#pb').css("width");
-						//var x = (100*(i+1))/data['data'].length;
-						//$('#pb').css("width",x+"%");
-					}
-					return events;
-				});	
-			}
 
 			function getPartyLikes(authtoken, partyid)
 			{
@@ -93,9 +75,4 @@
 					}
 					partylikes = partylike.concat(all);
 				});	
-			}
-			function getEvent(id, data, fn)
-			{
-				$.getJSON("https://graph.facebook.com/"+id+"?access_token="+authtoken, function( info ) { fn(data, info);
-				});		
 			}

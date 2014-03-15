@@ -24,7 +24,9 @@ THE SOFTWARE.
 var apiswf = null;
 var playback_token ="GAlNi78J_____zlyYWs5ZG02N2pkaHlhcWsyOWJtYjkyN2xvY2FsaG9zdEbwl7EHvbylWSWFWYMZwfc=";
 var domain = "localhost";
-
+var _Playlist = [];
+var playing = 0;
+var started = false;
 $(document).ready(function() {
   // on page load use SWFObject to load the API swf into div#apiswf
   var flashvars = {
@@ -42,15 +44,23 @@ $(document).ready(function() {
 
 
   // set up the controls
-  $('#play').click(function() {
-    console.log("playing");
-    apiswf.rdio_play("t39323649");
-  });
+  $('#play').click(function() {apiswf.rdio_play();});
   $('#stop').click(function() { apiswf.rdio_stop(); });
   $('#pause').click(function() { apiswf.rdio_pause(); });
   $('#previous').click(function() { apiswf.rdio_previous(); });
   $('#next').click(function() { apiswf.rdio_next(); });
 });
+
+function playPlaylist(playlist){
+  _Playlist = playlist;
+  playing = 0;
+  started = false;
+  play(_Playlist[0]);
+}
+
+function play(id){
+   apiswf.rdio_play(id);
+}
 
 
 // the global callback object
@@ -90,7 +100,19 @@ callback_object.freeRemainingChanged = function freeRemainingChanged(remaining) 
 callback_object.playStateChanged = function playStateChanged(playState) {
   // The playback state has changed.
   // The state can be: 0 - paused, 1 - playing, 2 - stopped, 3 - buffering or 4 - paused.
-  $('#playState').text(playState);
+  if (playState == 1)
+    start= true;
+
+  if(started && playState == 2)
+  {
+    console.log("NEXT");
+    playing++;
+    if(playing<_Playlist.length)
+      play(_Playlist[playing]);
+    else
+      started = false;
+  }
+  console.log(playState);
 }
 
 callback_object.playingTrackChanged = function playingTrackChanged(playingTrack, sourcePosition) {
@@ -120,7 +142,7 @@ callback_object.muteChanged = function muteChanged(mute) {
 callback_object.positionChanged = function positionChanged(position) {
   //The position within the track changed to position seconds.
   // This happens both in response to a seek and during playback.
-  $('#position').text(position);
+  //console.log(position);
 }
 
 callback_object.queueChanged = function queueChanged(newQueue) {
@@ -152,4 +174,5 @@ callback_object.updateFrequencyData = function updateFrequencyData(arrayAsString
     $(this).width(parseInt(parseFloat(arr[i])*500));
   })
 }
+
 
