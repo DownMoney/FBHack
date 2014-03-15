@@ -55,3 +55,7 @@ body{
 	
 	color: #fff;
 }
+
+#ytplayer, #player{
+	display: none !important;
+}
