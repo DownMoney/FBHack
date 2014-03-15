@@ -1,4 +1,5 @@
-var playlistDroppedDown = true;
+
+$('#volumeDropdown').toggle('blind',1);
 
 $(window).ready(function(){
 	setSizeOfColumns();
@@ -13,34 +14,22 @@ $(window).resize(function(){
 
 function setSizeOfColumns() {
 	if(parseInt($(window).width()) > 992 ){
-		$(".column").css('height', $(".jumbotron").height());
+		
+		var temp = $(".container").height() - 100;
+		$(".column").css('height', temp + "px");
 		$(".container").css('height',"70%");
-		playlistDropdown();
+		$(".playlistDropdown").css("max-height",( $(".column").height() - 80 )+ "px");
 	} else {
 		$(".column").css('height',"300px");
 		$(".container").css('height',"1000px");
-		playlistGetUp();
+				$(".playlistDropdown").css("max-height",( $(".column").height() - 80 )+ "px");
 	}
 }
 
-function playlistDropdown0() {
-	if (!playlistDroppedDown) {
-		playlistDropdown();
+$(".playlistHeader").click(function (){
+	$('.playlistDropdown').toggle('blind',100);
+});
 
-	} else {
-		playlistGetUp();
-	}
-}
-
-function playlistDropdown() {
-	$(".playlistDropdown").css("visibility","visible");
-	setTimeout(function(){$(".playlistDropdown").animate("height",$(".jumbotron").height());},100);
-	playlistDroppedDown = true;
-}
-
-function playlistGetUp() {
-	$(".playlistDropdown").animate("height","0px");
-
-	setTimeout(function(){$(".playlistDropdown").css("visibility","hidden");},100);
-	playlistDroppedDown = false;
-}
+$("#volume").click(function(){
+	$('#volumeDropdown').toggle('blind',100);
+});

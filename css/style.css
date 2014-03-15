@@ -85,8 +85,6 @@ body {
 
 .wide {
 	width: 100%;
-
-
 }
 
 .pw-zoom{
@@ -96,27 +94,28 @@ body {
 }
 
 .colorWhite {
-	background-color: white;
+	background: rgba(255,255,255,0.8);
 }
-
-
 .column {
 	height: 100%;
-	padding: 2px;
+	padding: 4px;
 }
 .incolumn {
 	background-color: rgba(70,70,70,0.8);
 	border-radius: 10px;
 	height: 100%;
-	padding: 8px;
+	padding: 6px;
+	border: 2px solid black;
 }
 
 .playlistHeader {
+	font-size: 25px;
 	font-weight: bold;
 }
 
 .playlistDropdown {
-	overflow: auto; 
+	overflow: auto;
+	max-height: auto;
 }
 
 .playlistItem {
@@ -130,7 +129,5 @@ body {
 }
 
 .musicPlayer {
-
 	height: auto;
-
 }
