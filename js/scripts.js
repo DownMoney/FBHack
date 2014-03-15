@@ -2,7 +2,7 @@ var Music = {};
 
 function getAuthToken(){
 	//replace with generated one!!!!
-	return "CAACEdEose0cBAIqILmG0tftDutKPUo2PZBlaVmPExyDisIOFj1caRkqKjuy562PtG3M8TQTjZAaWZCZBbxUC9bf9gNUiCG0YG45P2ikaKMPvailQCgP1yjCfKZB1X33geI2H6M08vTRtZCTFspgk0DSvbhHFsLBUWVlZCAG3jM8ioFJydX5hFlnxp6d3W0Wh2MZD";  
+	return "CAACEdEose0cBAJxmgZAhmcMp9w8zbWuIL90tTAwOwNBLnaTZANEdI4cgkJVBGY36MZBz6V7DSOA62yiPyNquAPpxW09J753bKnikAYQW9GlrHzpt4lDRupeflZBm75kMyVMZChy6saTQSMLN3B5v4XwfxZA9cXu0ILuWUGUDF7gD25SMloXGATf4aJCaQOOPsZD";  
 }
 
 function getEvents(){
@@ -50,7 +50,7 @@ function getMusic(eid, link, j, fn){
 
 		if(likes['paging'] && likes['paging']['next'])
 		{
-			getMusic(eid, i, info['paging']['next'], fn);
+			getMusic(eid, likes['paging']['next'], j,fn);
 		}
 		else
 		{
@@ -96,6 +96,7 @@ function rank(eid)
 	for(var i = 0; i < newrank.length; i++)
 	{
 		//get yt ids!!
+		//searchArtist(newrank[i][0], newrank[i][1]);
 		items.push("<b>"+newrank[i][0]+"</b> ("+newrank[i][1] + ")<br>");
 	}
 	
@@ -170,4 +171,39 @@ function onPlayerError(event){
   playID++;
   event.target.clearVideo();
   event.target.loadVideoById(ids[playID]);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////// SPOTIFY SPOTIFY SPOTIFY ///////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var Songs = {};
+
+function searchArtist(artist, n){
+	console.log(artist);
+	$.getJSON("https://ws.spotify.com/search/1/artist.json?q="+artist, function(data){
+		console.log(data);
+		href = data['artists'][0]['href'];
+		getAlbum(href, n, artist);
+	});
+}
+
+function getAlbum(href, n, a){
+	$.getJSON("http://ws.spotify.com/lookup/1/.json?uri="+href+"&extras=album", function(data){
+		for (var i =0; i<data['artist']['albums'].length ; i++) {
+			track = data['artist']['albums'][i]['album']['href'];
+			getTracks(track, n, a);
+		};
+	});
+}
+
+function getTracks(href, n, a){
+	$.getJSON("http://ws.spotify.com/lookup/1/.json?uri="+href+"&extras=track", function(data){
+		for (var i =0; i<data['artist']['albums'].length || i<n; i++) {
+			track = data['album']['tracks'][i]['href'];
+			name = data['album']['tracks'][i]['name'];
+			Songs[a] = {name: name, href: track};
+			console.log(Songs);
+		};
+	});
 }
