@@ -1,35 +1,18 @@
-
-$('#volumeDropdown').toggle('blind',1);
-
-$(window).ready(function(){
-	setSizeOfColumns();
+$("window").ready(function () {
+	var temp = ($(this).innerHeight()-200)/2;
+	$('#qrcode').css("margin-top", temp);
+	//$('buyAmazonImg').css("width", $('#m_artistPicture').width());
 });
-
-$(window).resize(function(){
-	setSizeOfColumns();
-});
-
-
-
-
-function setSizeOfColumns() {
-	if(parseInt($(window).width()) > 992 ){
-		
-		var temp = $(".container").height() - 100;
-		$(".column").css('height', temp + "px");
-		$(".container").css('height',"70%");
-		$(".playlistDropdown").css("max-height",( $(".column").height() - 80 )+ "px");
-	} else {
-		$(".column").css('height',"300px");
-		$(".container").css('height',"1000px");
-				$(".playlistDropdown").css("max-height",( $(".column").height() - 80 )+ "px");
-	}
-}
 
 $(".playlistHeader").click(function (){
 	$('.playlistDropdown').toggle('blind',100);
 });
 
-$("#volume").click(function(){
-	$('#volumeDropdown').toggle('blind',100);
+
+$("#qrcode").mouseover(function  () {
+	$("#qrcode").animate({left:"0px"},500);
+});
+
+$("#qrcode").mouseleave(function  () {
+	$("#qrcode").animate({left:"-450px"},500);
 });
