@@ -18,7 +18,10 @@
     <![endif]-->
 </head>
 <body>
-<div id="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http://stojanowski.eu/familiada" /></div>
+<div id="qrcode">
+    <div style="display: inline-block; width: 280px; padding: 20px; margin: auto; text-align: center; vertical-align: center;">Scan this code with your mobile device to get access to a special Guest Zone.</div>
+    <div style="display:inline-block;"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http://pajacyk.herokuapp.com/mobile/" /></div>
+</div>
 	<div class="container" style="height: auto; margin-bottom: 0px; margin-top: 20px;">
 		<div class="jumbotron" style="margin: 20px;">
             <div class="row" class="playlistDropdown">
@@ -51,7 +54,9 @@
 
             <div class="col-mx-12 col-ms-offset-2 col-ms-8 col-md-4 musicPlayer column">
             	<div class="incolumn">
+                    <p class="playlistHeader">Playing now</p>
             		<div class="list-group-item" style="background-color:rgba(150,150,150,0.5);text-align: center; width: 350px; margin: auto">
+                        <p class="title">Wykonawca - Tytul</p>
             			<div class="btn-group" style="float:left">
             				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-play"></span></button>
             				<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pause"></span></button>
@@ -77,6 +82,7 @@
 
             <div class="col-mx-12 col-ms-offset-2 col-ms-8 col-md-4 column">
             	<div class="incolumn">
+                    <p class="playlistHeader">Suggestions</p>
             		<div class="playlistDropdown" id="trending" style="margin-bottom: 20px;">
                         <a class="list-group-item active" href="#">Now tredning:</a>
                         <div class="list-group-item" onclick="vote('id');"><a href="#">1. <img class="playlistPicture" src="img/image.jpeg"/> Konrad</a> <span class="pull-right">2:20</span></div>

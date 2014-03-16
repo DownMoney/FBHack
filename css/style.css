@@ -204,7 +204,16 @@ a {
 }
 
 #qrcode {
-	position: absolute; left: -150px; vertical-align: center; display: table-cell; z-index: 9000; border: 2px solid black; padding: 10px; background-color: white;
+	position: absolute; 
+	left: -440px; 
+	text-align: right;
+	vertical-align: center;
+	display: table-cell;
+	z-index: 9000;
+	border: 2px solid black;
+	padding: 10px;
+	background-color: white;
+	width: 520px;
 }
 
 .m_listGI {

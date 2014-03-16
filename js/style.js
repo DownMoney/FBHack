@@ -10,9 +10,9 @@ $(".playlistHeader").click(function (){
 
 
 $("#qrcode").mouseover(function  () {
-	$("#qrcode").animate({left:"12%"},500);
+	$("#qrcode").animate({left:"0px"},500);
 });
 
 $("#qrcode").mouseleave(function  () {
-	$("#qrcode").animate({left:"-150px"},500);
+	$("#qrcode").animate({left:"-450px"},500);
 });
