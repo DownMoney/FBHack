@@ -1,6 +1,5 @@
 $("window").ready(function () {
 	var temp = ($(this).innerHeight()-200)/2;
-
 	$('#qrcode').css("margin-top", temp);
 });
 
@@ -10,6 +9,7 @@ $(".playlistHeader").click(function (){
 
 
 $("#qrcode").mouseover(function  () {
+	console.log('sdds');
 	$("#qrcode").animate({left:"12%"},500);
 });
 
