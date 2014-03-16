@@ -96,10 +96,12 @@ body {
 .colorWhite {
 	background: rgba(255,255,255,0.8);
 }
+
 .column {
 	height: 100%;
 	padding: 4px;
 }
+
 .incolumn {
 	background-color: rgba(70,70,70,0.8);
 	border-radius: 10px;
@@ -122,10 +124,17 @@ body {
 	padding: 2px;
 }
 
+.playlistPicture {
+	width: 23px;
+	height: 23px;
+}
+
 #artistPicture {
-	margin-top: -20px;
+	width: 318.5px;
+	height: 318.5px;	
 	margin-left: 0;
 	margin-right: 0;
+	padding: 0;
 }
 
 #progressBar {
@@ -151,7 +160,15 @@ body {
 
 div.list-group-item:hover {
 	text-decoration: none;
-	background-color: #666;
+	background-color: #888;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a {
+	color: black;
 }
 
 .musicPlayer {
@@ -165,4 +182,17 @@ div.list-group-item:hover {
 
 .buyAmazon img {
 	width: 50px;
+}
+
+.containerForFuckingAmazonForFucksSake {
+	z-index: 1500;
+	background-color: rgba(50,50,50,0.9);
+	position: relative;
+	width: 319px;
+	margin:auto;
+	margin-top: -80px;
+}
+
+#qrcode {
+	position: absolute; left: -150px; vertical-align: center; display: table-cell; z-index: 9000; border: 2px solid black; padding: 10px; background-color: white;
 }
