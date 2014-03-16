@@ -16,36 +16,8 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <script>
-    	var authtoken = $.cookie("token");
-    	var EID; //wot je event id
-    	function getProfile()
-        {
-            $.get("https://graph.facebook.com/me?access_token="+authtoken, function( data ) {
-                $('#my_name').html(data['name']);
-                $('#my_profilepic').html("<img src='https://graph.facebook.com/"+data['id']+"/picture'>");
-            });
-            $.get("https://graph.facebook.com/me/"+EID+"/?access_token="+authtoken, function( data ) {
-            	$('#event_title').html(data['data']['name']);
-            });
-        }
-        function suggest()
-        {
-        	var input = document.getElementById('suggestion').value;//$('#suggestion').value;
-        	$("#trending").hide(500);
-        	$('#results').show(500);
-        	//here get stuff from spotify
-        }
-        function sendSuggestion(sugg)
-        {
-        	//send suggestion to API
-        	$("#trending").show(500);
-        	$('#results').hide(500);
-        }
-    </script>
 </head>
-<body onload="getProfile();">
+<body>
 <div id="qrcode"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http://stojanowski.eu/familiada" /></div>
 	<div class="container" style="height: auto; margin-bottom: 0px; margin-top: 20px;">
 		<div class="jumbotron" style="margin: 20px;">
@@ -107,7 +79,7 @@
             	<div class="incolumn">
             		<div class="playlistDropdown" id="trending" style="margin-bottom: 20px;">
                         <a class="list-group-item active" href="#">Now tredning:</a>
-                        <div class="list-group-item"><a href="#">1. <img class="playlistPicture" src="img/image.jpeg"/> Konrad</a></div>
+                        <div class="list-group-item" onclick="vote('id');"><a href="#">1. <img class="playlistPicture" src="img/image.jpeg"/> Konrad</a> <span class="pull-right">2:20</span></div>
                         <div class="list-group-item"><a href="#">2. <img class="playlistPicture" src="img/image.jpeg"/> Michael</a></div>
                         <div class="list-group-item"><a href="#">3. <img class="playlistPicture" src="img/image.jpeg"/> Hiroshi</a></div>
                         <div class="list-group-item"><a href="#">4. <img class="playlistPicture" src="img/image.jpeg"/> Jarek</a></div>
@@ -134,6 +106,38 @@
     <script type="text/javascript" src="js/style.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
     <script src="js/jquery-cookie.js"></script>
+        <script>
+        var authtoken = $.cookie("token");
+        var EID; //wot je event id
+        function getProfile()
+        {
+            $.get("https://graph.facebook.com/me?access_token="+authtoken, function( data ) {
+                $('#my_name').html(data['name']);
+                $('#my_profilepic').html("<img src='https://graph.facebook.com/"+data['id']+"/picture'>");
+            });
+            $.get("https://graph.facebook.com/me/"+EID+"/?access_token="+authtoken, function( data ) {
+                $('#event_title').html(data['data']['name']);
+            });
+        }
+        function suggest()
+        {
+            var input = document.getElementById('suggestion').value;//$('#suggestion').value;
+            $("#trending").hide(500);
+            $('#results').show(500);
+            //here get stuff from spotify
+        }
+        function sendSuggestion(sugg)
+        {
+            //send suggestion to API
+            $("#trending").show(500);
+            $('#results').hide(500);
+        }
+        function vote(id)
+        {
+            //cast a vote!
+        }
+    </script>
+     <script>setTimeout(function() {getProfile();}, 500);</script>
     </div>
   </body>
 </html>
